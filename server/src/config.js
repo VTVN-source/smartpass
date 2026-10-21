@@ -23,6 +23,7 @@ const config = {
     password: env.DB_PASSWORD || '',
     database: env.DB_NAME || 'smartoutpass',
     poolSize: Number(env.DB_POOL_SIZE || 10),
+    ssl: (env.DB_SSL || 'false').toLowerCase() === 'true',
   },
   jwt: {
     accessSecret: required('JWT_ACCESS_SECRET', 'dev-access-secret-change-me'),

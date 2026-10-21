@@ -17,6 +17,8 @@
     "ai:retrain": "node scripts/retrain.js",
     "simulate": "node scripts/simulate-trip.js",
     "test": "node --test --test-concurrency=1 \"tests/*.test.js\"",
+    "test:unit": "node --test --test-concurrency=1 \"tests/geofence.test.js\" \"tests/qr.test.js\" \"tests/overdue.test.js\" \"tests/ai.test.js\"",
+    "test:integration": "node --test --test-concurrency=1 \"tests/registration.test.js\" \"tests/daily.test.js\"",
     "seed:minimal": "node scripts/seed-minimal.js"
   },
   "dependencies": {

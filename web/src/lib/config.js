@@ -2,7 +2,11 @@ export const API_URL = (import.meta.env.VITE_API_URL || '/api').replace(/\/$/, '
 
 export const SOCKET_URL =
   import.meta.env.VITE_SOCKET_URL ||
-  (typeof window !== 'undefined' ? window.location.origin : 'http://localhost:4000');
+  (/^https?:\/\//i.test(API_URL)
+    ? new URL(API_URL).origin
+    : typeof window !== 'undefined'
+      ? window.location.origin
+      : 'http://localhost:4000');
 
 /** Origin of the API server (used to prefix /uploads/... paths). Empty string = same origin (proxy). */
 export const API_ORIGIN = (() => {
