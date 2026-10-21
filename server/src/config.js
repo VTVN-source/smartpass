@@ -24,6 +24,7 @@ const config = {
     database: env.DB_NAME || 'smartoutpass',
     poolSize: Number(env.DB_POOL_SIZE || 10),
     ssl: (env.DB_SSL || 'false').toLowerCase() === 'true',
+    sslCa: env.DB_SSL_CA || '',
   },
   jwt: {
     accessSecret: required('JWT_ACCESS_SECRET', 'dev-access-secret-change-me'),

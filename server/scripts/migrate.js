@@ -15,7 +15,19 @@ async function main() {
   const fresh = process.argv.includes('--fresh');
   if (fresh && config.env === 'production') throw new Error('--fresh is disabled in production');
 
-  const base = { host: config.db.host, port: config.db.port, user: config.db.user, password: config.db.password, multipleStatements: true };
+  const base = {
+    host: config.db.host,
+    port: config.db.port,
+    user: config.db.user,
+    password: config.db.password,
+    multipleStatements: true,
+    ...(config.db.ssl ? {
+      ssl: {
+        rejectUnauthorized: true,
+        ...(config.db.sslCa ? { ca: config.db.sslCa } : {}),
+      },
+    } : {}),
+  };
   const admin = await mysql.createConnection(base);
   await admin.query(`CREATE DATABASE IF NOT EXISTS \`${config.db.database}\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci`);
   await admin.end();

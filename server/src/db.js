@@ -12,7 +12,12 @@ function getPool() {
       password: config.db.password,
       database: config.db.database,
       connectionLimit: config.db.poolSize,
-      ...(config.db.ssl ? { ssl: { rejectUnauthorized: true } } : {}),
+      ...(config.db.ssl ? {
+        ssl: {
+          rejectUnauthorized: true,
+          ...(config.db.sslCa ? { ca: config.db.sslCa } : {}),
+        },
+      } : {}),
       timezone: 'Z',
       dateStrings: false,
       decimalNumbers: true,
