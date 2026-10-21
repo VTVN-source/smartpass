@@ -44,7 +44,6 @@ services:
   - type: web
     name: smartoutpass-web
     runtime: static
-    plan: free
     rootDir: web
     buildCommand: npm ci && npm run build
     staticPublishPath: dist
